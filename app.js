@@ -1,10 +1,12 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require("mongoose");
 const blogRouter = require("./routes/BlogRoutes");
 
+const MONGODB_URI= "mongodb+srv://shilpa:mind%40123@node-crud.9lptvoh.mongodb.net/?retryWrites=true&w=majority"
 
-mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/CRUD",
+/*mongoose.connect(
+    process.env.MONGODB_URI || URL,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -16,12 +18,13 @@ mongoose.connect(
             console.log("Connected to MongoDB");
         }
     }
-);
+);*/
 
 
 const connectDB = async () => {
+    console.log(process.env.MONGODB_URI, 'AAAAAAAAAAAAAAAAA')
     try {
-        const conn = await mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/CRUD");
+        const conn = await mongoose.connect(MONGODB_URI || "mongodb://localhost/CRUD");
         console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (error) {
         console.log(error);
