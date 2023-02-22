@@ -13,9 +13,11 @@ exports.getBlogById = async (id) => {
 };
 
 exports.updateBlog = async (id, blog) => {
-    return await BlogModel.findByIdAndUpdate(id, blog);
+    return await BlogModel.findByIdAndUpdate(id, blog, {new: true});
 };
 
 exports.deleteBlog = async (id) => {
-    return await BlogModel.findByIdAndDelete(id);
+    return await BlogModel.findByIdAndDelete(id).then(() => {
+        return 'Deleted'
+    });
 };
