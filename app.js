@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require("mongoose");
+mongoose.set("strictQuery", false);
+
 const blogRouter = require("./routes/BlogRoutes");
 
 const MONGODB_URI= "mongodb+srv://shilpa:mind%40123@node-crud.9lptvoh.mongodb.net/?retryWrites=true&w=majority"
