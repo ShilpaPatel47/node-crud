@@ -17,6 +17,17 @@ mongoose.connect(
         }
     }
 );
+
+
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/CRUD");
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+        console.log(error);
+        process.exit(1);
+    }
+}
 const app = express();
 //middleware
 app.use(express.json());
@@ -24,8 +35,12 @@ app.use(express.json());
 const port = 3000
 
 app.use("/api/blogs", blogRouter);
-app.listen(port, function (){
-    console.log(`You app working on http://localhost:${port}/`)
+
+
+connectDB().then(() => {
+    app.listen(port, function (){
+        console.log(`You app working on http://localhost:${port}/`)
+    })
 })
 
 module.exports = app;
