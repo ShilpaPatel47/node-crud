@@ -4,13 +4,10 @@ const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
 
 const blogRouter = require("./routes/BlogRoutes");
-
-const MONGODB_URI= "mongodb+srv://shilpa:mind%40123@node-crud.9lptvoh.mongodb.net/?retryWrites=true&w=majority"
-
 const connectDB = async () => {
-    console.log(MONGODB_URI, 'AAAAAAAAAAAAAAAAA')
+    console.log(process.env.MONGODB_URI, 'AAAAAAAAAAAAAAAAA')
     try {
-        const conn = await mongoose.connect(MONGODB_URI);
+        const conn = await mongoose.connect(process.env.MONGODB_URI);
         console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (error) {
         console.log(error);
