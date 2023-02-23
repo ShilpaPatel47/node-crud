@@ -5,7 +5,6 @@ mongoose.set("strictQuery", false);
 
 const blogRouter = require("./routes/BlogRoutes");
 const connectDB = async () => {
-    console.log(process.env.MONGODB_URI, 'NEWWWWWWW')
     try {
         const conn = await mongoose.connect(process.env.MONGODB_URI);
         console.log(`MongoDB Connected: ${conn.connection.host}`);
